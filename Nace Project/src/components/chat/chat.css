@@ -1,0 +1,83 @@
+.lb {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #868c96;
+}
+
+.br {
+  position: relative;
+}
+
+.br::before,
+.br::after {
+  content: '';
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+}
+
+.br::before {
+  top: 0;
+  left: 0;
+  border-top: 1px solid #e8e4da;
+  border-left: 1px solid #e8e4da;
+}
+
+.br::after {
+  right: 0;
+  bottom: 0;
+  border-right: 1px solid #e8e4da;
+  border-bottom: 1px solid #e8e4da;
+}
+
+.chat-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #3a3f48 transparent;
+}
+
+.chat-scrollbar::-webkit-scrollbar {
+  width: 2px;
+}
+
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background: #3a3f48;
+}
+
+.typing-dot {
+  display: inline-block;
+  opacity: 0.25;
+  animation: typingBlink 1.2s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes typingBlink {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .typing-dot {
+    opacity: 1 !important;
+  }
+}

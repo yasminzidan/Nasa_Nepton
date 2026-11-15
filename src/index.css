@@ -1,0 +1,407 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer components {
+  .instrument-label {
+    @apply font-mono text-[10px] uppercase tracking-[0.14em] text-mute;
+  }
+
+  .interactive-surface {
+    transition:
+      color 300ms ease-out,
+      background-color 300ms ease-out,
+      border-color 300ms ease-out,
+      transform 300ms ease-out,
+      box-shadow 300ms ease-out;
+  }
+
+  .interactive-surface:hover:not([aria-pressed="true"]) {
+    border-color: rgb(6 182 212 / 50%);
+    background-color: rgb(15 23 42 / 60%);
+  }
+
+  .interactive-card {
+    transition:
+      border-color 300ms ease-out,
+      background-color 300ms ease-out,
+      box-shadow 300ms ease-out;
+  }
+
+  .interactive-card:hover {
+    border-color: rgb(6 182 212 / 32%);
+    background-color: rgb(15 23 42 / 28%);
+  }
+
+  .interactive-cta {
+    border-color: rgb(255 90 31 / 55%);
+    background-color: rgb(255 90 31 / 10%);
+    color: #ff5a1f;
+    transition:
+      color 300ms ease-out,
+      background-color 300ms ease-out,
+      box-shadow 300ms ease-out,
+      transform 300ms ease-out;
+  }
+
+  .interactive-cta:hover {
+    border-color: #06b6d4;
+    background-color: #0b2833;
+    box-shadow: 0 0 22px rgb(34 211 238 / 18%);
+    color: #a5f3fc;
+  }
+
+  .interactive-cta:active {
+    background-color: #062f39;
+    color: #cffafe;
+    transform: translateY(1px);
+  }
+}
+
+@keyframes radar-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes radar-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes panel-enter-left {
+  from {
+    opacity: 0;
+    transform: translate3d(-24px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes panel-enter-right {
+  from {
+    opacity: 0;
+    transform: translate3d(24px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes inspector-reveal {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.975);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.radar-sweep {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 275deg,
+    rgb(0 229 255 / 5%) 315deg,
+    rgb(0 229 255 / 48%) 360deg
+  );
+  animation: radar-spin 5s linear infinite;
+  mask-image: radial-gradient(circle, transparent 0 17%, #000 19% 100%);
+  transform-origin: center;
+}
+
+.radar-orbit {
+  animation: radar-spin 22s linear infinite;
+  transform-box: view-box;
+  transform-origin: center;
+}
+
+.radar-core {
+  animation: radar-pulse 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 7px rgb(0 229 255 / 80%));
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.panel-enter-left {
+  animation: panel-enter-left 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.panel-enter-right {
+  animation: panel-enter-right 760ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.inspector-reveal {
+  animation: inspector-reveal 460ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transform-origin: top center;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #07080a;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: #07080a;
+  font-family: "IBM Plex Mono", monospace;
+  color: #e8e4da;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+select,
+input {
+  border-radius: 0;
+}
+
+.instrument-grid {
+  background-color: #07080a;
+  background-image:
+    linear-gradient(#12151a 1px, transparent 1px),
+    linear-gradient(90deg, #12151a 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+button:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+  outline: none;
+}
+
+button:focus-visible,
+select:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid #06b6d4;
+  outline-offset: 2px;
+}
+
+button.text-mute {
+  color: #868c96;
+}
+
+button.text-data {
+  color: #00e5ff;
+}
+
+button.text-fire {
+  color: #ff5a1f;
+}
+
+button.text-alert {
+  color: #ff3b30;
+}
+
+button.text-bone {
+  color: #e8e4da;
+}
+
+button.text-void {
+  color: #07080a;
+}
+
+button.text-white {
+  color: #fff;
+}
+
+button.text-cyan-200 {
+  color: #a5f3fc;
+}
+
+button.interactive-cta:hover {
+  border-color: #06b6d4;
+  background-color: #0b2833;
+  color: #a5f3fc;
+}
+
+button.interactive-cta:active {
+  background-color: #062f39;
+  color: #cffafe;
+}
+
+button:active:not([aria-pressed="true"]):not(.interactive-cta) {
+  background-color: rgb(8 51 68 / 85%);
+}
+
+.instrument-grid-overlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.2;
+  background-image:
+    linear-gradient(#12151a 1px, transparent 1px),
+    linear-gradient(90deg, #12151a 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.corner-brackets {
+  position: relative;
+}
+
+.corner-brackets::before,
+.corner-brackets::after {
+  position: absolute;
+  z-index: 1;
+  width: 9px;
+  height: 9px;
+  pointer-events: none;
+  content: "";
+}
+
+.corner-brackets::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid #e8e4da;
+  border-left: 1px solid #e8e4da;
+}
+
+.corner-brackets::after {
+  right: -1px;
+  bottom: -1px;
+  border-right: 1px solid #e8e4da;
+  border-bottom: 1px solid #e8e4da;
+}
+
+.feed-scroll,
+.panel-scroll {
+  scrollbar-color: #3a3f48 transparent;
+  scrollbar-width: thin;
+}
+
+.feed-scroll::-webkit-scrollbar,
+.panel-scroll::-webkit-scrollbar {
+  width: 2px;
+}
+
+.feed-scroll::-webkit-scrollbar-thumb,
+.panel-scroll::-webkit-scrollbar-thumb {
+  background: #3a3f48;
+}
+
+.cesium-map {
+  z-index: 0;
+}
+
+.cesium-map__vignette {
+  display: none;
+}
+
+.cesium-widget-credits {
+  display: none !important;
+}
+
+@media (width < 80rem) {
+  .mission-panel {
+    top: auto;
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    width: auto;
+  }
+
+  .mission-panel--left {
+    right: auto;
+    left: 12px;
+  }
+
+  .mission-panel--right {
+    right: 12px;
+    left: auto;
+  }
+
+  .mission-panel--open {
+    z-index: 40;
+    bottom: calc(76px + env(safe-area-inset-bottom));
+    width: min(calc(100vw - 24px), 420px);
+  }
+
+  .mission-panel--left.mission-panel--open {
+    right: auto;
+    left: 12px;
+  }
+
+  .mission-panel--right.mission-panel--open {
+    right: 12px;
+    left: auto;
+  }
+
+  .mission-panel--open > .corner-brackets {
+    width: 100%;
+    max-height: calc(100dvh - 144px);
+  }
+
+  .mission-panel--open .panel-scroll {
+    height: auto;
+    max-height: calc(100dvh - 190px);
+  }
+
+}
+
+@media (max-width: 767px) {
+  .mission-panel,
+  .mission-panel--open {
+    bottom: calc(120px + env(safe-area-inset-bottom));
+  }
+
+  .mission-panel--left.mission-panel--open,
+  .mission-panel--right.mission-panel--open {
+    right: 8px;
+    left: 8px;
+    width: auto;
+  }
+
+  .mission-panel--open > .corner-brackets {
+    max-height: calc(100dvh - 184px - env(safe-area-inset-bottom));
+    padding: 10px;
+  }
+
+  .mission-panel--open .panel-scroll {
+    max-height: calc(100dvh - 232px - env(safe-area-inset-bottom));
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radar-sweep,
+  .radar-orbit,
+  .radar-core,
+  .panel-enter-left,
+  .panel-enter-right,
+  .inspector-reveal,
+  .animate-pulse {
+    animation: none;
+  }
+
+  .interactive-surface,
+  .interactive-card,
+  .interactive-cta {
+    transition-duration: 0.01ms;
+  }
+}

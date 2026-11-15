@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burning Activity Calendar & Analytics</title>
+  
+  <!-- مكتبات التصميم والرسوم البيانية -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  
+  <!-- ربط ملف التنسيق الخارجي -->
+  <link rel="stylesheet" href="naca.css">
+</head>
+<body class="p-3">
+
+  <div class="container-fluid">
+    <!-- شريط التحكم العلوي وأزرار التصدير -->
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2 analytics-card">
+      <div class="d-flex align-items-center gap-3 flex-wrap">
+        <h5 class="mb-0 text-warning fw-bold">🔥 Burning Activity Analytics</h5>
+        
+        <select id="year-selector" class="form-select form-select-sm bg-dark text-light border-secondary custom-select">
+          <option value="2026" selected>2026</option>
+          <option value="2020">2020</option>
+          <option value="2010">2010 (MODIS Harmonized)</option>
+        </select>
+        
+        <div class="form-check form-switch mb-0">
+          <input class="form-check-input" type="checkbox" id="harmonized-toggle" checked>
+          <label class="form-check-label small" for="harmonized-toggle">Show Harmonized Series</label>
+        </div>
+      </div>
+
+      <div class="d-flex gap-2">
+        <button id="export-csv-btn" class="btn btn-sm btn-outline-warning">⬇ Export CSV</button>
+        <button id="export-json-btn" class="btn btn-sm btn-outline-light">⬇ Export JSON</button>
+      </div>
+    </div>
+
+    <!-- 1. قسم تقويم نشاط الحرق (Calendar Heatmap) -->
+    <div class="analytics-card mb-3">
+      <div id="calendar-heatmap" class="chart-box calendar-box"></div>
+    </div>
+
+    <!-- 2. قسم الاتجاهات التاريخية والشذوذ (Trends & Anomalies) -->
+    <div class="analytics-card">
+      <div id="anomaly-trend-chart" class="chart-box trend-box"></div>
+    </div>
+  </div>
+
+  <!-- ربط ملف الجافاسكريبت الخارجي -->
+  <script src="naca.js"></script>
+</body>
+</html>

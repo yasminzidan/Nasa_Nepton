@@ -1,0 +1,29 @@
+body {
+  background-color: #0f172a;
+  color: #f8fafc;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.analytics-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+.custom-select {
+  width: 190px;
+}
+
+.chart-box {
+  width: 100%;
+}
+
+.calendar-box {
+  height: 240px;
+}
+
+.trend-box {
+  height: 300px;
+}
