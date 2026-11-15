@@ -12,7 +12,15 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': `http://127.0.0.1:${chatApiPort}`,
+      '/api/chat': {
+        target: `http://127.0.0.1:${chatApiPort}`,
+        changeOrigin: true,
+      },
+      '/api/fires': {
+        target: 'https://wildfire-api-fgccbkhzg4ekbfc6.italynorth-01.azurewebsites.net',
+        changeOrigin: true,
+        secure: true,
+      },
     },
   },
 })

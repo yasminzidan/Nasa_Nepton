@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/fires",
+      "destination": "https://wildfire-api-fgccbkhzg4ekbfc6.italynorth-01.azurewebsites.net/api/fires"
+    },
+    {
+      "source": "/api/fires/:path*",
+      "destination": "https://wildfire-api-fgccbkhzg4ekbfc6.italynorth-01.azurewebsites.net/api/fires/:path*"
+    }
+  ]
+}

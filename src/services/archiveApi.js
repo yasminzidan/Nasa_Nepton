@@ -1,5 +1,4 @@
-const ARCHIVE_API_BASE_URL =
-  'https://wildfire-api-fgccbkhzg4ekbfc6.italynorth-01.azurewebsites.net/api/fires'
+const ARCHIVE_API_BASE_URL = '/api/fires'
 
 async function fetchJson(url, signal, fetchImpl) {
   const response = await fetchImpl(url, { signal })
